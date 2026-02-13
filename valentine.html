@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For You ❤️</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #ffe6f0;
+        }
+        .box {
+            background: white;
+            padding: 30px;
+            display: inline-block;
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+        }
+        input {
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: none;
+            background-color: #ff4d88;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Enter the password to unlock your surprise 🎶</h2>
+    <input type="password" id="password" placeholder="Password">
+    <br>
+    <button onclick="checkPassword()">Unlock</button>
+    <p id="error" style="color:red;"></p>
+</div>
+
+<script>
+function checkPassword() {
+    var password = document.getElementById("password").value;
+    if(password === "TE QUIERO") {
+        window.location.href = "https://open.spotify.com/playlist/6GJkO5ieLP08PDxFmFk6TC?si=xftoRKKTTXqleOLlXs_D3w&pi=yZxyeRBZRiOl1";
+    } else {
+        document.getElementById("error").innerText = "Wrong password 😜 Try again!";
+    }
+}
+</script>
+
+</body>
+</html>
