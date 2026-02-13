@@ -1,58 +1,129 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For You ❤️</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 100px;
-            background-color: #ffe6f0;
-        }
-        .box {
-            background: white;
-            padding: 30px;
-            display: inline-block;
-            border-radius: 15px;
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
-        }
-        input {
-            padding: 10px;
-            margin-top: 10px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-        }
-        button {
-            padding: 10px 15px;
-            margin-top: 10px;
-            border-radius: 8px;
-            border: none;
-            background-color: #ff4d88;
-            color: white;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For You ❤️</title>
+  <style>
+    /* Page layout */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      position: relative;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffe6f0; /* fallback color */
+      /* Set your background image filename here (relative path or absolute URL) */
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    /* subtle dark overlay for readability */
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      pointer-events: none;
+    }
+
+    /* Card */
+    .box {
+      position: relative;
+      z-index: 1;                /* keep card above overlay */
+      background: rgba(255,255,255,0.95);
+      padding: 34px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+      max-width: 420px;
+      width: calc(100% - 40px);
+      text-align: center;
+    }
+
+    /* Heading (two lines) */
+    h2 {
+      margin: 0 0 14px 0;
+      line-height: 1.4;
+      font-weight: 600;
+      font-size: 20px;
+      color: #222;
+    }
+
+    /* Input and button */
+    input[type="password"] {
+      width: calc(100% - 24px);
+      padding: 10px;
+      margin-top: 8px;
+      border-radius: 8px;
+      border: 1px solid #d0d0d0;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 16px;
+      margin-top: 12px;
+      border-radius: 8px;
+      border: none;
+      background-color: #ff4d88;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    #error {
+      margin-top: 12px;
+      color: #c62828;
+      min-height: 20px;
+    }
+
+    /* small responsive tweak */
+    @media (max-width: 420px) {
+      h2 { font-size: 18px; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="box">
-    <h2>Enter the password to unlock your surprise 🎶</h2>
+  <div class="box">
+    <h2>
+      For authorized listener only 🎶<br>
+      Authentication Required ❤️
+    </h2>
+
     <input type="password" id="password" placeholder="Password">
     <br>
     <button onclick="checkPassword()">Unlock</button>
-    <p id="error" style="color:red;"></p>
-</div>
+    <p id="error"></p>
+  </div>
 
-<script>
-function checkPassword() {
-    var password = document.getElementById("password").value;
-    if(password === "TE QUIERO") {
-        window.location.href = "https://open.spotify.com/playlist/6GJkO5ieLP08PDxFmFk6TC?si=xftoRKKTTXqleOLlXs_D3w&pi=yZxyeRBZRiOl1";
-    } else {
-        document.getElementById("error").innerText = "Wrong password 😜 Try again!";
+  <script>
+    function checkPassword() {
+      var password = document.getElementById("password").value.trim();
+
+      /* ===== REPLACE THESE TWO VALUES =====
+         1) YOURPASSWORD  -> put your chosen password here (exact match)
+         2) YOUR_SPOTIFY_LINK -> full Spotify link (https://open.spotify.com/track/xxxxx)
+      =====================================*/
+
+      var SECRET = "TE QUIERO";
+      var SPOTIFY = "https://open.spotify.com/playlist/6GJkO5ieLP08PDxFmFk6TC?si=xftoRKKTTXqleOLlXs_D3w&pi=yZxyeRBZRiOl1";
+
+      if (password === SECRET) {
+        // redirect to Spotify
+        window.location.href = SPOTIFY;
+      } else {
+        document.getElementById("error").innerText = "Hmm… that’s not it. Try the password you’d never forget.";
+      }
     }
-}
-</script>
+  </script>
 
 </body>
 </html>
